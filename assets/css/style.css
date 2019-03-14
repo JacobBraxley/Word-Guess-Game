@@ -1,0 +1,13 @@
+
+:root {
+    --victoryWidth: 100px;
+}
+
+.pastVictories div {
+    position:absolute;
+    left: -var(victoryWidth);
+    transition: 0.5s;
+    padding: 15px;
+    margin: 15px;
+    width: var(victoryWidth);
+}
