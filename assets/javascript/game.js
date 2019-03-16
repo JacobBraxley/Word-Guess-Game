@@ -9,7 +9,7 @@ var hangManGame = {
     userGuesses: [],
     numGuessesLeft: 0b1010, //10 guesses.  I don't want people to lose really.  Just accept the inevitable. 
     audio: undefined,
-    verboseLog: true,
+    verboseLog: false,
 
     //Functions
     sleep: function(ms) {
@@ -29,7 +29,7 @@ var hangManGame = {
             })
             .catch(error => {
                 //Something went wrong.
-                if(count < 2) { //Max Attempts
+                if(count < 300) { //Max Attempts
                     //Try again in half a second.
                     hangManGame.pauseFor(500);
                     hangManGame.handleAudioPromise(hangManGame.audio.play(), ++count);
@@ -81,11 +81,12 @@ var hangManGame = {
 
     //Transition function.
     loadNextWord: function () {
+        // debugger;
         //Update Index, sound, guesses avaialble, clear guess array, display word.        
-        this.currentTargetIndex++;
-        this.numGuessesLeft = 0b1010;
-        this.userGuesses = [];        
-        this.playAudioFile(this.wordInProgressSounds[this.currentTargetIndex]);
+        hangManGame.currentTargetIndex++;
+        hangManGame.numGuessesLeft = 0b1010;
+        hangManGame.userGuesses = [];        
+        hangManGame.playAudioFile(hangManGame.wordInProgressSounds[hangManGame.currentTargetIndex]);
         hangManGame.progressDisplay();
     },
 
@@ -96,9 +97,20 @@ var hangManGame = {
         else if (!this.activeWord.innerHTML.includes("_")) { //Win
             //debugger;
             hangManGame.playAudioFile(hangManGame.wordWinSounds[hangManGame.currentTargetIndex], false);
-            this.pauseFor(8000);
-            this.loadNextWord();
-            //TODO add show function for progress.
+
+            var vicAreas = document.getElementsByClassName("vic");
+
+            [].forEach.call(vicAreas, function(vicArea) {
+                // debugger;
+                if(vicArea.getAttribute("index") == hangManGame.currentTargetIndex)
+                {
+                    // vicArea.classList.add("slideIntoView");
+                    vicArea.setAttribute("style", "left: 0px;");
+                }
+            });
+
+            setTimeout(hangManGame.loadNextWord, 3000);
+
         }
     },
 

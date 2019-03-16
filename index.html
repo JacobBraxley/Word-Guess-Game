@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Hang Man Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="container">
     <audio id="myAudio"></audio>
-    <h1>Your Robot Overlords</h1>
+    <h1 class="fa-align-center">Your Robot Overlords</h1>
     <div class="Instructions">Press any key to get started!</div>
 
     <div class="mysteryWord"></div>
@@ -21,46 +22,14 @@
         Word: <div id="activeWord"></div>
     </div>
 
-    <div class="pastVictories">
-        <div class="skynetVic">SkyNet</div>
-        <div class="dalekVic">Daleks</div>
-        <div class="borgVic">Borg</div>
-        <div class="ultronVic">Ultron</div>
-        <div class="benderVic">Bender</div>
+    <div id="victoryDisplay" class="pastVictories container">
+        <div id="skynetVic" index="0" class="vic row">SkyNet</div>
+        <div id="dalekVic" index="1" class="vic row">Daleks</div>
+        <div id="borgVic" index="2" class="vic row">Borg</div>
+        <div id="benderVic" index="3" class="vic row">Bender</div>        
+        <div id="ultronVic" index="4" class="vic row">Ultron</div>
     </div>
-    <!--
-           * If the word is `madonna`, display it like this when the game starts: `_ _ _ _ _ _ _`.
-        
-           * As the user guesses the correct letters, reveal them: `m a d o _  _ a`. -->
-
-           <!--
-
-2. Write some stylish CSS rules to make a design that fits your game's theme.
-3. **HARD MODE:** Organize your game code as an object, except for the key events to get the letter guessed. This will be a challenge if you haven't coded with JavaScript before, but we encourage anyone already familiar with the language to try this out.
-4. Save your whole game and its properties in an object.
-5. Save any of your game's functions as methods, and call them underneath your object declaration using event listeners.
-6. Don't forget to place your global variables and functions above your object.
-   * Remember: global variables, then objects, then calls.
-
-- - -
-
-### Create a README.md
-
-Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
-
-* [About READMEs](https://help.github.com/articles/about-readmes/)
-
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-
-- - -
-
-### Add To Your Portfolio
-
-After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
--->
-
-
-    <script src="assets/javascript/game.js" type="text/javascript"></script>
+    <script src="assets/javascript/game.js" defer type="text/javascript"></script>
 </body>
 
 </html>
