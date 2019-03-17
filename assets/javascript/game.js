@@ -10,6 +10,7 @@ var hangManGame = {
     numGuessesLeft: 0b1010, //10 guesses.  I don't want people to lose really.  Just accept the inevitable. 
     audio: undefined,
     verboseLog: false,
+    gameLost: false,
 
     //Functions
     sleep: function(ms) {
@@ -81,7 +82,6 @@ var hangManGame = {
 
     //Transition function.
     loadNextWord: function () {
-        // debugger;
         //Update Index, sound, guesses avaialble, clear guess array, display word.        
         hangManGame.currentTargetIndex++;
         hangManGame.numGuessesLeft = 0b1010;
@@ -92,16 +92,18 @@ var hangManGame = {
 
     evaluateWinLoss: function () {
         if (this.numGuessesLeft == 0) { //Loss
-            var as = "bob";
+            this.gameLost = true;
+            var header = document.getElementById("mainHeader");
+            header.textContent = "Your Overlords are disapointed.  Refresh to continue."
+            header.classList.add("blinkingText");
+
         }
         else if (!this.activeWord.innerHTML.includes("_")) { //Win
-            //debugger;
             hangManGame.playAudioFile(hangManGame.wordWinSounds[hangManGame.currentTargetIndex], false);
 
             var vicAreas = document.getElementsByClassName("vic");
 
             [].forEach.call(vicAreas, function(vicArea) {
-                // debugger;
                 if(vicArea.getAttribute("index") == hangManGame.currentTargetIndex)
                 {
                     // vicArea.classList.add("slideIntoView");
@@ -135,7 +137,8 @@ var hangManGame = {
 };
 
 document.onkeyup = function (event) {
-    hangManGame.handleKeyPress(event.key);
+    if(!hangManGame.gameLost)
+        hangManGame.handleKeyPress(event.key);
 }
 
 hangManGame.loadNextWord();

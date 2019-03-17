@@ -6,29 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hang Man Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="container">
-    <audio id="myAudio"></audio>
-    <h1 class="fa-align-center">Your Robot Overlords</h1>
-    <div class="Instructions">Press any key to get started!</div>
+<body>
+    <div class="container">
+        <h1 id="mainHeader" class="text-center shadow-lg p-3 mb-5 bg-white rounded">Your Robot Overlords</h1>
 
-    <div class="mysteryWord"></div>
-    <div class="guessArea">
-        # of Guesses Remaining: <div id="remainingGuesses"></div>
-        Letters Guessed: <div id="guessesSoFar"></div>
-        Word: <div id="activeWord"></div>
-    </div>
+        <div class="gameArea shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="instructions">Press any key to get started!</div>
 
-    <div id="victoryDisplay" class="pastVictories container">
-        <div id="skynetVic" index="0" class="vic row">SkyNet</div>
-        <div id="dalekVic" index="1" class="vic row">Daleks</div>
-        <div id="borgVic" index="2" class="vic row">Borg</div>
-        <div id="benderVic" index="3" class="vic row">Bender</div>        
-        <div id="ultronVic" index="4" class="vic row">Ultron</div>
+            <div class="mysteryWord"></div>
+            <div class="guessArea">
+                # of Guesses Remaining: <div id="remainingGuesses"></div>
+                Letters Guessed: <div id="guessesSoFar"></div>
+                Word: <div id="activeWord"></div>
+            </div>
+        </div>
+
+        <div id="victoryDisplay" class="pastVictories container">
+            <div id="skynetVic" index="0" class="vic row">SkyNet</div>
+            <div id="dalekVic" index="1" class="vic row">Daleks</div>
+            <div id="borgVic" index="2" class="vic row">Borg</div>
+            <div id="benderVic" index="3" class="vic row">Bender</div>
+            <div id="ultronVic" index="4" class="vic row">Ultron</div>
+        </div>
+
     </div>
+    
     <script src="assets/javascript/game.js" defer type="text/javascript"></script>
 </body>
 
