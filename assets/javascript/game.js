@@ -10,7 +10,7 @@ var hangManGame = {
     numGuessesLeft: 0b1010, //10 guesses.  I don't want people to lose really.  Just accept the inevitable. 
     audio: undefined,
     verboseLog: false,
-    gameLost: false,
+    gameEnd: false,
 
     //Functions
     sleep: function(ms) {
@@ -92,7 +92,7 @@ var hangManGame = {
 
     evaluateWinLoss: function () {
         if (this.numGuessesLeft == 0) { //Loss
-            this.gameLost = true;
+            this.gameEnd = true;
             var header = document.getElementById("mainHeader");
             header.textContent = "Your Overlords are disapointed.  Refresh to continue."
             header.classList.add("blinkingText");
@@ -111,7 +111,15 @@ var hangManGame = {
                 }
             });
 
-            setTimeout(hangManGame.loadNextWord, 3000);
+            if(hangManGame.currentTargetIndex != (hangManGame.wordsToGuess.length - 1)) {
+                setTimeout(hangManGame.loadNextWord, 3000);
+            }
+            else {
+                this.gameEnd = true;
+                var header = document.getElementById("mainHeader");
+                header.textContent = "Well Done! Your Overlords will allow you to continue to serve."
+                header.classList.add("blinkingText");
+            }
 
         }
     },
@@ -137,7 +145,7 @@ var hangManGame = {
 };
 
 document.onkeyup = function (event) {
-    if(!hangManGame.gameLost)
+    if(!hangManGame.gameEnd)
         hangManGame.handleKeyPress(event.key);
 }
 
